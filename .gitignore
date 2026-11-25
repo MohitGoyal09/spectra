@@ -1,0 +1,12 @@
+.DS_Store
+*.xcodeproj/
+*.xcworkspace/
+DerivedData/
+.build/
+.swiftpm/
+xcuserdata/
+GoogleService-Info.plist
+*.env
+
+# Converted CLIP models (rebuild with scripts/convert_clip.py)
+App/Resources/Models/

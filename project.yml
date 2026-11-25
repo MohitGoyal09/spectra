@@ -1,0 +1,121 @@
+name: TidyRoll
+settings:
+  base:
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+options:
+  bundleIdPrefix: com.tidyroll
+  deploymentTarget:
+    iOS: "26.0"
+packages:
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk
+    exactVersion: 12.19.3
+  TidyCore:
+    path: Packages/TidyCore
+targets:
+  TidyRoll:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+      - path: Shared
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleURLTypes:
+          - CFBundleURLName: com.mohitgoyal.tidyroll
+            CFBundleURLSchemes: [tidyroll]
+    entitlements:
+      path: App/TidyRoll.entitlements
+      properties:
+        com.apple.security.application-groups: [group.com.mohitgoyal.tidyroll]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.mohitgoyal.tidyroll
+        DEVELOPMENT_TEAM: G7WCKP3S7Y
+        CODE_SIGN_STYLE: Automatic
+        SWIFT_VERSION: "6.0"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Spectra
+        INFOPLIST_KEY_NSPhotoLibraryUsageDescription: "Spectra sorts and cleans your photos on this iPhone. Photos never leave your phone."
+        INFOPLIST_KEY_NSFaceIDUsageDescription: "Spectra uses Face ID to open the albums you lock."
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        TARGETED_DEVICE_FAMILY: "1"
+    dependencies:
+      - package: Firebase
+        product: FirebaseAILogic
+      - package: Firebase
+        product: FirebaseAppCheck
+      - package: TidyCore
+      - target: TidyRollWidget
+  TidyRollWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Widget
+      - path: Shared
+    info:
+      path: Widget/Info.plist
+      properties:
+        CFBundleDisplayName: Spectra
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: Widget/TidyRollWidget.entitlements
+      properties:
+        com.apple.security.application-groups: [group.com.mohitgoyal.tidyroll]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.mohitgoyal.tidyroll.widget
+        DEVELOPMENT_TEAM: G7WCKP3S7Y
+        CODE_SIGN_STYLE: Automatic
+        SWIFT_VERSION: "6.0"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Spectra
+        TARGETED_DEVICE_FAMILY: "1"
+  TidyRollTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: TidyRollTests
+    dependencies:
+      - target: TidyRoll
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        SWIFT_VERSION: "6.0"
+        DEVELOPMENT_TEAM: G7WCKP3S7Y
+        CODE_SIGN_STYLE: Automatic
+        PRODUCT_BUNDLE_IDENTIFIER: com.mohitgoyal.tidyroll.tests
+  TidyRollUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: TidyRollUITests
+    dependencies:
+      - target: TidyRoll
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        SWIFT_VERSION: "6.0"
+        DEVELOPMENT_TEAM: G7WCKP3S7Y
+        CODE_SIGN_STYLE: Automatic
+        PRODUCT_BUNDLE_IDENTIFIER: com.mohitgoyal.tidyroll.uitests
+        TEST_TARGET_NAME: TidyRoll
+schemes:
+  TidyRoll:
+    build:
+      targets:
+        TidyRoll: all
+    test:
+      targets:
+        - TidyRollTests
+  TidyRollUI:
+    build:
+      targets:
+        TidyRoll: all
+        TidyRollUITests: [test]
+    test:
+      targets:
+        - TidyRollUITests

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64"><title>Spectra</title><g transform="translate(0 0) scale(1.0)">
+    <defs><mask id="mi" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+      <rect x="4" y="4" width="56" height="56" rx="16" fill="#fff"/>
+      <rect x="23" y="21" width="44" height="8" rx="4" fill="#000"/>
+      <rect x="-3" y="35" width="44" height="8" rx="4" fill="#000"/>
+    </mask></defs>
+    <rect x="4" y="4" width="56" height="56" rx="16" fill="#16161A" mask="url(#mi)"/>
+  </g></svg>
