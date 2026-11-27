@@ -50,6 +50,12 @@ flowchart LR
 
 Picture search uses an on-device image-text model (OpenAI CLIP ViT-B/32, MIT, run with Core ML) to index what photos look like. Vision and CLIP only turn pixels into searchable data on the phone. Every generative step goes through Firebase AI Logic.
 
+## Install
+
+**[Download Spectra.ipa](https://github.com/MohitGoyal09/spectra/releases/latest/download/Spectra.ipa)** (latest release, iPhone, iOS 26).
+
+The `.ipa` is unsigned, so install it with [AltStore](https://altstore.io) or [Sideloadly](https://sideloadly.io) and your own Apple ID; they sign it for your device. On-device AI needs an iPhone with Apple Intelligence; without it, Spectra asks before using the Gemini fallback. Or build it yourself with Xcode: see [Run it](#run-it).
+
 ## Run it
 
 Requirements: Xcode 27, an iPhone with iOS 26 (Apple Intelligence on for on-device AI), [XcodeGen](https://github.com/yonaskolb/XcodeGen).
